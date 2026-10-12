@@ -21,8 +21,18 @@ jobs:
       - name: Build Docker image
         run: docker build -t node-image:latest .
 
+      - name: Tag Docker image for ECR
+        run: |
+          docker tag node-image:latest \
+            081473213177.dkr.ecr.us-east-1.amazonaws.com/node-image:latest
+
       - name: Show Docker images
         run: docker images
+
+      - name: Push Docker image to ECR
+        run: |
+          docker push \
+            081473213177.dkr.ecr.us-east-1.amazonaws.com/node-image:latest
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
