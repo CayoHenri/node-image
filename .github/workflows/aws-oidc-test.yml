@@ -18,6 +18,12 @@ jobs:
       - name: Show repository files
         run: ls -la
 
+      - name: Build Docker image
+        run: docker build -t node-image:latest .
+
+      - name: Show Docker images
+        run: docker images
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
